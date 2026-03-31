@@ -121,6 +121,6 @@ This project integrates concepts from:
 ## 👨‍💻 Author
 
 **David González Santibañez**
-Chemical Process Engineer
+Chemical Engineer – Process Engineer
 
 This project was developed as a practical application of Python in process engineering, production line simulation, and industrial data analysis.
