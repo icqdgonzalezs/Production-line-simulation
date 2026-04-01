@@ -1,0 +1,76 @@
+# ============================================================
+#  Configuración de línea de envasado — Snacks / Cereales
+#  Unidades: unidades/minuto, minutos, kg
+# ============================================================
+
+line:
+  name: "Línea A — Snacks & Cereales"
+  product: "Cereal Granola 500g"
+  shift_duration_min: 480       # 8 horas
+  target_rate_upm: 80           # unidades por minuto objetivo
+  sim_replications: 20          # réplicas Monte Carlo
+
+stations:
+  - id: S01
+    name: "Dosificación"
+    rate_upm: 95.0              # capacidad nominal (upm)
+    cycle_time_std: 0.05        # variabilidad (fracción)
+    mtbf_min: 120               # tiempo medio entre fallas (min)
+    mttr_min: 8                 # tiempo medio de reparación (min)
+    quality_rate: 0.998         # fracción de unidades conformes
+
+  - id: S02
+    name: "Pesaje dinámico"
+    rate_upm: 88.0
+    cycle_time_std: 0.04
+    mtbf_min: 200
+    mttr_min: 5
+    quality_rate: 0.995
+
+  - id: S03
+    name: "Formado-Llenado-Sellado (FFS)"
+    rate_upm: 80.0              # ← cuello de botella nominal
+    cycle_time_std: 0.08
+    mtbf_min: 90
+    mttr_min: 12
+    quality_rate: 0.993
+
+  - id: S04
+    name: "Detector de metales"
+    rate_upm: 100.0
+    cycle_time_std: 0.02
+    mtbf_min: 480
+    mttr_min: 3
+    quality_rate: 0.9999
+
+  - id: S05
+    name: "Codificado / Fecha"
+    rate_upm: 110.0
+    cycle_time_std: 0.03
+    mtbf_min: 300
+    mttr_min: 4
+    quality_rate: 0.999
+
+  - id: S06
+    name: "Encajado secundario"
+    rate_upm: 85.0
+    cycle_time_std: 0.06
+    mtbf_min: 150
+    mttr_min: 10
+    quality_rate: 0.997
+
+  - id: S07
+    name: "Paletizado"
+    rate_upm: 92.0
+    cycle_time_std: 0.05
+    mtbf_min: 240
+    mttr_min: 7
+    quality_rate: 0.999
+
+conveyors:
+  buffer_capacity: 50           # unidades máx. en buffer entre estaciones
+  transport_time_min: 0.3       # tiempo de transporte entre estaciones
+
+oee:
+  planned_downtime_min: 30      # paradas planificadas (limpieza, etc.)
+  changeover_min: 0             # cambio de formato (esta corrida)
